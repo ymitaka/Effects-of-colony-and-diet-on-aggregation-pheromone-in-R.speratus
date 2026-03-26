@@ -37,23 +37,3 @@ a1 <- d %>%
 	summarize(SampleT=sum(Sample), SolventT=sum(Solvent))
 a1
 pairwise.fisher.test(a1$SampleT, a1$SampleT + a1$SolventT, p.adjust.method="bonferroni")
-
-
-
-# GLMM (Binomial distribution, random effect: colony, Dish ID)
-library(lme4)
-library(multcomp)
-
-d1 <- mutate(d, DishID=paste(Colony, Treatment, Replication))
-d1$Treatment <- factor(d1$Treatment, levels=c("Negative", "Mix", "Mix − 2PhC11", "Crude"))
-
-# Ratio Sample/Solvent
-r <- glmer(cbind(Sample, Sample+Solvent)~Treatment + (1|Colony) + (1|DishID), family="binomial", glmerControl(optimizer="bobyqa", optCtrl = list(maxfun = 10000)), data=d1)
-rN <- glmer(cbind(Sample, Sample+Solvent)~ 1 + (1|Colony) + (1|DishID), family="binomial", glmerControl(optimizer="bobyqa", optCtrl = list(maxfun = 10000)), data=d1)
-anova(r, rN, test="Chisq")
-res <- glht(r, linfct=mcp(Treatment="Tukey"))	# Tukey HSD test
-summary(res)
-cld(res, level=0.05, decreasing=T)
-res2 <- glht(r, linfct=mcp(Treatment="Dunnett"))	# Dunnett's test
-summary(res2)
-
