@@ -75,7 +75,7 @@ groups$Food <- factor(groups$Food, levels=c("Sugi", "Akamatsu", "BPC", "Paper"))
 colony.names <- data[, 1]
 
 dev.new(width=10, height=14)
-ComplexHeatmap::pheatmap(d2, scale="none", color=my.col2, cluster_rows=T, cluster_cols=F, fontsize=8, 
+ComplexHeatmap::pheatmap(d2, scale="none", color=my.col2, cluster_rows=T, cluster_cols=F, show_row_dend=F, fontsize=8, 
 				angle_col=c("90"), border_color="NA", legend=T, annotation_col=groups, name="Scaled value",
 				annotation_colors=list(Food=c(Sugi="gold", Akamatsu="brown",BPC="green3", Paper="dodgerblue")),
 				labels_col=colony.names)
@@ -100,7 +100,7 @@ groups$Food <- factor(groups$Food, levels=c("Sugi", "Akamatsu", "BPC", "Paper"))
 colony.names <- data[, 1]
 
 dev.new(width=10, height=3)
-ComplexHeatmap::pheatmap(d3, scale="none", color=my.col2, cluster_rows=T, cluster_cols=F, fontsize=8, 
+ComplexHeatmap::pheatmap(d3, scale="none", color=my.col2, cluster_rows=T, cluster_cols=F, show_row_dend=F, fontsize=8, 
 				angle_col=c("90"), border_color="NA", legend=T, annotation_col=groups, name="Scaled value",
 				annotation_colors=list(Food=c(Sugi="gold", Akamatsu="brown",BPC="green3", Paper="dodgerblue")),
 				labels_col=colony.names)
