@@ -21,7 +21,9 @@ rpca$rotation
 
 library(ggfortify)
 dev.new(width=7, height=5)
-autoplot(prcomp(d1[, 6:123], scale=T), data=d1, shape="Colony", colour="Material", size=4, loadings=F, loadings.label=F) + scale_shape_manual(values=c(0:20)) + theme_bw() 
+autoplot(prcomp(d1[, 6:123], scale=T), data=d1, shape="Colony", colour="Material", size=4, loadings=F, loadings.label=F) + scale_shape_manual(values=c(0,1,2,3,6,15,16,17,18,4,5,7,8,9,10,11,12,13,14,19,20)) + theme_bw() 
+
+# *After the above PCA plot was created, only the inverted triangle plots (Default shapes in R, No. 6) were filled in later using Adobe illustrator.
 
 
 # Pairwise PERMANOVA
